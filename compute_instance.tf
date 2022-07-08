@@ -8,7 +8,7 @@ data "template_file" "k3s-agent-startup-script" {
 
 resource "google_compute_instance" "k3s-agent" {
   machine_type = var.machine_type
-  name         = "k3s-agent-${var.name}-"
+  name         = "k3s-agent-${var.name}"
   tags         = ["k3s", "k3s-worker"]
 
   metadata_startup_script = data.template_file.k3s-agent-startup-script.rendered
