@@ -1,19 +1,15 @@
-# variable "project" {
-#   type = string
-# }
+variable "project" {
+  type = string
+}
 
-# variable "region" {
-#   type = string
-# }
+variable "network" {
+  type = string
+}
 
-# variable database {
-#   type = map
-# }
+variable "region" {
+  type = string
+}
 
-# variable servers {
-#   type = map
-# }
-
-# variable agents {
-#   type = map
-# }
+variable "db_tier" {
+  type = string
+}
