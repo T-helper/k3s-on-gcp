@@ -35,7 +35,7 @@ resource "google_compute_forwarding_rule" "k3s-api-server-internal" {
   name                  = "k3s-api-server-internal"
   region                = var.region
   load_balancing_scheme = "INTERNAL"
-  allow_global_access   = true
+  # allow_global_access   = true
   ip_address            = google_compute_address.k3s-api-server-internal.address
   backend_service       = google_compute_region_backend_service.k3s-api-server-internal.id
   ports                 = [6443]
