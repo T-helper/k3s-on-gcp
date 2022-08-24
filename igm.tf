@@ -8,7 +8,7 @@ data "template_file" "k3s-server-startup-script" {
   vars = {
     token                  = random_string.token.result
     internal_lb_ip_address = google_compute_address.k3s-api-server-internal.address
-    external_lb_ip_address = google_compute_address.k3s-api-server-external.address
+    # external_lb_ip_address = google_compute_address.k3s-api-server-external.address
     db_host                = var.db_host
     db_name                = var.db_name
     db_user                = var.db_user
@@ -25,12 +25,10 @@ resource "google_compute_instance_template" "k3s-server" {
   metadata_startup_script = data.template_file.k3s-server-startup-script.rendered
 
   metadata = {
-    block-project-ssh-keys = "TRUE"
-    enable-oslogin         = "TRUE"
   }
 
   disk {
-    source_image = "debian-cloud/debian-10"
+    source_image = "ubuntu-2004-focal-v20220610"
     auto_delete  = true
     boot         = true
   }
