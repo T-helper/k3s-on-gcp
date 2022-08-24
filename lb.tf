@@ -55,7 +55,7 @@ resource "google_compute_region_backend_service" "k3s-api-server-external" {
 resource "google_compute_forwarding_rule" "k3s-api-server-external" {
   name                  = "k3s-api-server-external"
   region                = var.region
-  load_balancing_scheme = "EXTERNAL"
+  load_balancing_scheme = "INTERNAL"
   ip_address            = google_compute_address.k3s-api-server-external.address
   backend_service       = google_compute_region_backend_service.k3s-api-server-external.id
   port_range            = "6443-6443"
