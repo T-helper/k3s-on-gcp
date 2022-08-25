@@ -44,6 +44,18 @@ resource "google_compute_firewall" "k3s-api-authorized-networks" {
   direction   = "INGRESS"
 }
 
+resource "google_compute_firewall" "k3s-api-authorized-ssh" {
+  name          = "k3s-api-authorized-networks"
+  network       = var.network
+  source_ranges = split(",", var.authorized_networks)
+  allow {
+    protocol = "tcp"
+    ports    = [22]
+  }
+  target_tags = ["k3s-server"]
+  direction   = "INGRESS"
+}
+
 resource "google_compute_router" "router" {
   name    = "k3s-servers"
   region  = var.region
