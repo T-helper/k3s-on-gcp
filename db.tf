@@ -30,7 +30,7 @@ resource "google_sql_database_instance" "k3s-db" {
       hour = 1
     }
   }
-
+  deletion_protection = false
   depends_on = [google_service_networking_connection.k3s-private-vpc-connection]
 }
 
