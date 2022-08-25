@@ -45,7 +45,7 @@ resource "google_compute_firewall" "k3s-api-authorized-networks" {
 }
 
 resource "google_compute_firewall" "k3s-api-authorized-ssh" {
-  name          = "k3s-api-authorized-networks"
+  name          = "k3s-api-authorized-ssh"
   network       = var.network
   source_ranges = split(",", var.authorized_networks)
   allow {
