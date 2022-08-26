@@ -45,9 +45,9 @@ resource "google_compute_firewall" "k3s-api-authorized-networks" {
 }
 
 resource "google_compute_firewall" "k3s-api-authorized-ssh" {
-  name          = "k3s-api-authorized-ssh"
+  name          = "k3s-api-authorized-iap"
   network       = var.network
-  source_ranges = split(",", var.authorized_networks)
+  source_ranges = ["35.235.240.0/20"]
   allow {
     protocol = "tcp"
     ports    = [22]
