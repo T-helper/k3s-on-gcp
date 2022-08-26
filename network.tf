@@ -24,3 +24,16 @@ resource "google_compute_router_nat" "nat" {
     source_ip_ranges_to_nat = ["ALL_IP_RANGES"]
   }
 }
+
+
+resource "google_compute_firewall" "k3s-agnets-firewall-iap" {
+  name                              = "k3s-agents-${var.name}"
+  network                           = var.network
+  source_ranges                     = ["35.235.240.0/20"]
+  allow {
+    protocol = "tcp"
+    ports    = [22]
+  }
+  target_tags = ["k3s-agent"]
+  direction   = "INGRESS"
+}
