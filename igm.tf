@@ -15,12 +15,10 @@ resource "google_compute_instance_template" "k3s-agent" {
   metadata_startup_script = data.template_file.k3s-agent-startup-script.rendered
 
   metadata = {
-    block-project-ssh-keys = "TRUE"
-    enable-oslogin         = "TRUE"
   }
 
   disk {
-    source_image = "debian-cloud/debian-10"
+    source_image = "ubuntu-2004-focal-v20220610"
     auto_delete  = true
     boot         = true
   }
