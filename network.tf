@@ -44,7 +44,7 @@ resource "google_compute_firewall" "k3s-api-authorized-networks" {
   direction   = "INGRESS"
 }
 
-resource "google_compute_firewall" "k3s-api-authorized-ssh" {
+resource "google_compute_firewall" "k3s-api-authorized-iap" {
   name          = "k3s-api-authorized-iap"
   network       = var.network
   source_ranges = ["35.235.240.0/20"]
