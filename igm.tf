@@ -3,7 +3,6 @@ data "template_file" "k3s-agent-startup-script" {
   vars = {
     token          = var.token
     server_address = var.server_address
-    project        = var.project
   }
 }
 
