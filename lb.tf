@@ -6,7 +6,7 @@ resource "google_compute_region_health_check" "k3s-health-check-ingress" {
   check_interval_sec = 5
 
   tcp_health_check {
-    port = 6443
+    port = 32080
   }
 }
 
@@ -28,4 +28,3 @@ resource "google_compute_forwarding_rule" "k3s-ingress-external" {
   backend_service       = google_compute_region_backend_service.k3s-ingress-external.id
   port_range            = "6443-6443"
 }
-
