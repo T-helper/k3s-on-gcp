@@ -10,6 +10,7 @@ resource "google_compute_instance" "k3s-agent" {
   machine_type = var.machine_type
   name         = "k3s-agent-${var.name}"
   tags         = ["k3s", "k3s-worker"]
+  zone         = var.zone
 
   metadata_startup_script = data.template_file.k3s-agent-startup-script.rendered
 
