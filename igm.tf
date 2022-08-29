@@ -13,8 +13,8 @@ data "template_file" "k3s-server-startup-script" {
     db_name                = var.db_name
     db_user                = var.db_user
     db_password            = var.db_password
-    project                = var.project
-    region                 = var.region
+    # project                = var.project
+    # region                 = var.region
   }
 }
 
