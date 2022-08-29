@@ -40,7 +40,7 @@ resource "google_compute_firewall" "k3s-api-authorized-networks" {
     protocol = "tcp"
     ports    = [6443, 10256]
   }
-  target_tags = ["k3s-server"]
+  target_tags = ["k3s", "k3s-agents", "k3s-server"]
   direction   = "INGRESS"
 }
 
