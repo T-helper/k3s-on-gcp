@@ -13,6 +13,9 @@ data "template_file" "k3s-server-startup-script" {
     db_name                = var.db_name
     db_user                = var.db_user
     db_password            = var.db_password
+    project                = var.project
+    region                 = var.region
+    instance_id            = lookup(data.google_compute_region_instance_group.data_masters.instances[0], "instance")
   }
 }
 
