@@ -11,7 +11,7 @@ resource "google_sql_database_instance" "k3s-db" {
   settings {
     tier              = var.db_tier
     availability_type = "ZONAL"
-    disk_size         = 50
+    disk_size         = 10
     disk_type         = "PD_SSD"
     disk_autoresize   = true
 
