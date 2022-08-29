@@ -16,7 +16,7 @@ resource "google_compute_region_backend_service" "k3s-ingress-external" {
   load_balancing_scheme = "EXTERNAL"
   health_checks         = [google_compute_region_health_check.k3s-health-check-ingress.id]
   backend {
-    group = google_compute_region_instance_group_manager.k3s-servers.instance_group
+    group = google_compute_region_instance_group_manager.k3s-agent.instance_group
   }
 }
 
