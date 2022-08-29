@@ -7,6 +7,10 @@ resource "google_compute_subnetwork" "k3s-agents" {
   private_ip_google_access = true
 }
 
+resource "google_compute_address" "k3s-ingress-external" {
+  name   = "k3s-ingress-external"
+  region = var.region
+}
 resource "google_compute_router" "router" {
   name    = "k3s-agents-${var.name}"
   region  = var.region
