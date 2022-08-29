@@ -1,6 +1,6 @@
 #! /bin/bash
-instance_id=$(curl -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/id)
-zone=$(curl -H "Metadata-Flavor:Google" http://metadata/computeMetadata/v1/instance/zone | cut -d/ -f4)
+INSTANCE_ID="$(curl -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/id)"
+ZONE="$(curl -H "Metadata-Flavor:Google" http://metadata/computeMetadata/v1/instance/zone | cut -d/ -f4)"
 
 curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="v1.23.8+k3s1" sh -s - \
     --write-kubeconfig-mode 644 \
@@ -12,5 +12,5 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="v1.23.8+k3s1" sh -s - \
     --disable servicelb \
     --disable traefik \
     --kubelet-arg cloud-provider=external \
-    --kubelet-arg provider-id="gce://${project}/$(zone)/$(instance_id)"
+    --kubelet-arg provider-id="gce://${project}/$(echo $ZONE)/$(echo $INSTANCE_ID)"
     --datastore-endpoint "postgres://${db_user}:${db_password}@${db_host}:5432/${db_name}"
