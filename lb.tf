@@ -6,7 +6,7 @@ resource "google_compute_region_health_check" "k3s-health-check-ingress" {
   check_interval_sec = 5
 
   tcp_health_check {
-    port = 32080
+    port = 443
   }
 }
 
