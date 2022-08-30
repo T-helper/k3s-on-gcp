@@ -41,3 +41,15 @@ resource "google_compute_firewall" "k3s-agnets-firewall-iap" {
   target_tags = ["k3s-agent"]
   direction   = "INGRESS"
 }
+
+resource "google_compute_firewall" "k3s-agnets-firewall-ingress" {
+  name                              = "k3s-agents-${var.name}"
+  network                           = var.network
+  source_ranges                     = ["0.0.0.0/0"]
+  allow {
+    protocol = "tcp"
+    ports    = [32080,32443]
+  }
+  target_tags = ["k3s-agent"]
+  direction   = "INGRESS"
+}
