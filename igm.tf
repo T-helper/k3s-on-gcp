@@ -58,12 +58,12 @@ resource "google_compute_region_instance_group_manager" "k3s-agents" {
 
   named_port {
     name = "http"
-    port = 80
+    port = 32080
   }
 
   named_port {
     name = "https"
-    port = 443
+    port = 32443
   }
 
   update_policy {
