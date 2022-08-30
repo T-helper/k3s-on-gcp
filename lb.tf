@@ -18,7 +18,6 @@ resource "google_compute_region_backend_service" "k3s-ingress-external" {
   backend {
     group = google_compute_region_instance_group_manager.k3s-agents.instance_group
   }
-  ports  = [ "http", "https" ]
 }
 
 resource "google_compute_forwarding_rule" "k3s-ingress-external" {
