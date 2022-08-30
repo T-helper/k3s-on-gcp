@@ -43,7 +43,7 @@ resource "google_compute_firewall" "k3s-agnets-firewall-iap" {
 }
 
 resource "google_compute_firewall" "k3s-agnets-firewall-ingress" {
-  name                              = "k3s-agents-${var.name}"
+  name                              = "k3s-agents-${var.name}-ingress"
   network                           = var.network
   source_ranges                     = ["0.0.0.0/0"]
   allow {
