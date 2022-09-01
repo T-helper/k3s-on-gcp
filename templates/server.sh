@@ -1,4 +1,5 @@
 #! /bin/bash
+apt install wireguard -y
 curl https://releases.rancher.com/install-docker/19.03.sh | sh
 
 curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="v1.23.8+k3s1" sh -s - \
@@ -10,5 +11,5 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="v1.23.8+k3s1" sh -s - \
     --disable=traefik \
     --datastore-endpoint "postgres://${db_user}:${db_password}@${db_host}:5432/${db_name}" \
     --kube-apiserver-arg="service-node-port-range=80-32767" \
-    --flannel-backend ipsec \
+    --flannel-backend wireguard \
     --docker
