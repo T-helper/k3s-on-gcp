@@ -29,7 +29,7 @@ resource "google_compute_instance_template" "k3s-agent" {
   }
 
   shielded_instance_config {
-    enable_secure_boot = true
+    enable_secure_boot = false
   }
 
   service_account {
@@ -58,12 +58,12 @@ resource "google_compute_region_instance_group_manager" "k3s-agents" {
 
   named_port {
     name = "http"
-    port = 32080
+    port = 80
   }
 
   named_port {
     name = "https"
-    port = 32443
+    port = 443
   }
 
   update_policy {
