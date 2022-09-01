@@ -13,8 +13,6 @@ data "template_file" "k3s-server-startup-script" {
     db_name                = var.db_name
     db_user                = var.db_user
     db_password            = var.db_password
-    # project                = var.project
-    # region                 = var.region
   }
 }
 
@@ -30,7 +28,7 @@ resource "google_compute_instance_template" "k3s-server" {
   }
 
   disk {
-    source_image = "ubuntu-2004-focal-v20220610"
+    source_image = "ubuntu-2004-lts"
     auto_delete  = true
     boot         = true
   }
