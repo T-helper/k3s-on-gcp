@@ -14,4 +14,5 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="v1.23.8+k3s1" sh -s - \
     --kube-apiserver-arg="service-node-port-range=80-32767" \
     --flannel-backend ipsec \
     --docker \
-    --cluster-cidr="10.240.0.0/16"
+    --cluster-cidr "10.240.0.0/16" \
+    --service-cidr "10.241.0.0/16"
