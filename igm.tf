@@ -28,7 +28,7 @@ resource "google_compute_instance_template" "k3s-server" {
   }
 
   disk {
-    source_image = "ubuntu-2004-lts"
+    source_image = "ubuntu-os-cloud/ubuntu-2004-lts"
     auto_delete  = true
     boot         = true
   }
