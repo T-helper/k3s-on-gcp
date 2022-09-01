@@ -18,7 +18,7 @@ resource "google_compute_instance_template" "k3s-agent" {
   }
 
   disk {
-    source_image = "ubuntu-2004-focal-v20220610"
+    source_image = "ubuntu-os-cloud/ubuntu-2004-lts"
     auto_delete  = true
     boot         = true
   }
