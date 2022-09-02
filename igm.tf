@@ -33,6 +33,11 @@ resource "google_compute_instance_template" "k3s-server" {
     boot         = true
   }
 
+  # network_interface {
+  #   network    = var.network
+  #   subnetwork = google_compute_subnetwork.k3s-servers.id
+  # }
+
   network_interface {
     network    = var.network
     subnetwork = google_compute_subnetwork.k3s-cluster.id
