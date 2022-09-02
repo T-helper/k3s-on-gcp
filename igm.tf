@@ -25,7 +25,7 @@ resource "google_compute_instance_template" "k3s-agent" {
 
   network_interface {
     network    = var.network
-    subnetwork = google_compute_subnetwork.k3s-agents.self_link
+    subnetwork = var.subnetwork
   }
 
   shielded_instance_config {
