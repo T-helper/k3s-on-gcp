@@ -35,7 +35,7 @@ resource "google_compute_instance_template" "k3s-server" {
 
   network_interface {
     network    = var.network
-    subnetwork = google_compute_subnetwork.k3s-servers.id
+    subnetwork = google_compute_subnetwork.k3s-cluster.id
   }
 
   shielded_instance_config {
