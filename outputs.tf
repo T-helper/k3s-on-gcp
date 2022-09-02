@@ -11,6 +11,6 @@ output "external_lb_ip_address" {
 }
 
 output "google_compute_subnetwork" {
-  value = google_compute_subnetwork.k3s-cluster.id
+  value = google_compute_subnetwork.k3s-cluster.name
 }
 
