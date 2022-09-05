@@ -1,15 +1,5 @@
-# resource "google_compute_subnetwork" "k3s-servers" {
-#   name          = "k3s-servers"
-#   network       = var.network
-#   region        = var.region
-#   ip_cidr_range = var.cidr_range
-
-#   private_ip_google_access = true
-# }
-
-
-resource "google_compute_subnetwork" "k3s-cluster" {
-  name          = "k3s-cluster"
+resource "google_compute_subnetwork" "k3s-servers" {
+  name          = "k3s-servers"
   network       = var.network
   region        = var.region
   ip_cidr_range = var.cidr_range

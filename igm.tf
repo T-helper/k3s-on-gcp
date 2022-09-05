@@ -33,19 +33,14 @@ resource "google_compute_instance_template" "k3s-server" {
     boot         = true
   }
 
-  # network_interface {
-  #   network    = var.network
-  #   subnetwork = google_compute_subnetwork.k3s-servers.id
-  # }
-
   network_interface {
     network    = var.network
-    subnetwork = google_compute_subnetwork.k3s-cluster.id
+    subnetwork = google_compute_subnetwork.k3s-servers.id
   }
 
-  shielded_instance_config {
-    enable_secure_boot = false
-  }
+  # shielded_instance_config {
+  #   enable_secure_boot = true
+  # }
 
   service_account {
     email = var.service_account
