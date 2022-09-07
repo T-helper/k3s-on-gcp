@@ -43,7 +43,7 @@ resource "google_compute_forwarding_rule" "k3s-vpnservers-tcp-external" {
 }
 
 resource "google_compute_forwarding_rule" "k3s-vpnservers-udp-external" {
-  name                  = "k3s-vpnservers-tcp-external"
+  name                  = "k3s-vpnservers-udp-external"
   region                = var.region
   load_balancing_scheme = "EXTERNAL"
   ip_address            = google_compute_address.k3s-vpn.address
