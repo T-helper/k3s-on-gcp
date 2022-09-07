@@ -14,7 +14,7 @@ resource "google_compute_region_backend_service" "k3s-vpnservers-tcp-external" {
   name                  = "k3s-vpnservers-tcp-external"
   region                = var.region
   load_balancing_scheme = "EXTERNAL"
-  ip_protocol              = "TCP"
+  protocol              = "TCP"
   health_checks         = [google_compute_region_health_check.k3s-health-check-vpnservers.id]
   backend {
     group = google_compute_region_instance_group_manager.k3s-agents-vpnservers.instance_group
@@ -25,7 +25,7 @@ resource "google_compute_region_backend_service" "k3s-vpnservers-udp-external" {
   name                  = "k3s-vpnservers-udp-external"
   region                = var.region
   load_balancing_scheme = "EXTERNAL"
-  ip_protocol              = "UDP"
+  protocol              = "UDP"
   health_checks         = [google_compute_region_health_check.k3s-health-check-vpnservers.id]
   backend {
     group = google_compute_region_instance_group_manager.k3s-agents-vpnservers.instance_group
@@ -39,7 +39,7 @@ resource "google_compute_forwarding_rule" "k3s-vpnservers-tcp-external" {
   ip_address            = google_compute_address.k3s-vpn.address
   backend_service       = google_compute_region_backend_service.k3s-vpnservers-tcp-external.id
   ports                 = [443]
-  protocol              = "TCP"
+  ip_protocol           = "TCP"
 }
 
 resource "google_compute_forwarding_rule" "k3s-vpnservers-udp-external" {
@@ -49,5 +49,5 @@ resource "google_compute_forwarding_rule" "k3s-vpnservers-udp-external" {
   ip_address            = google_compute_address.k3s-vpn.address
   backend_service       = google_compute_region_backend_service.k3s-vpnservers-tcp-external.id
   ports                 = [443]
-  protocol              = "UDP"
+  ip_protocol           = "UDP"
 }
