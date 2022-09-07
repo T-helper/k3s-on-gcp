@@ -30,7 +30,7 @@ resource "google_compute_router_nat" "nat" {
 }
 
 resource "google_compute_firewall" "k3s-agnets-vpnservers-firewall-iap" {
-  name                              = "k3s-agents-vpnservers-${var.name}"
+  name                              = "k3s-agents-vpnservers-iap-${var.name}"
   network                           = var.network
   source_ranges                     = ["35.235.240.0/20"]
   allow {
