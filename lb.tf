@@ -17,7 +17,7 @@ resource "google_compute_region_backend_service" "k3s-vpnservers-tcp-external" {
   protocol              = "TCP"
   health_checks         = [google_compute_region_health_check.k3s-health-check-ingress.id]
   backend {
-    group = google_compute_region_instance_group_manager.k3s-agents.instance_group
+    group = google_compute_region_instance_group_manager.k3s-agents-vpnservers.instance_group
   }
 }
 
@@ -28,7 +28,7 @@ resource "google_compute_region_backend_service" "k3s-vpnservers-udp-external" {
   protocol              = "UDP"
   health_checks         = [google_compute_region_health_check.k3s-health-check-ingress.id]
   backend {
-    group = google_compute_region_instance_group_manager.k3s-agents.instance_group
+    group = google_compute_region_instance_group_manager.k3s-agents-vpnservers.instance_group
   }
 }
 
