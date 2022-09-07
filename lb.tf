@@ -1,5 +1,5 @@
-resource "google_compute_region_health_check" "k3s-health-check-ingress" {
-  name   = "k3s-health-check-ingress"
+resource "google_compute_region_health_check" "k3s-health-check-vpnservers" {
+  name   = "k3s-health-check-vpnservers"
   region = var.region
 
   timeout_sec        = 1
@@ -10,21 +10,33 @@ resource "google_compute_region_health_check" "k3s-health-check-ingress" {
   }
 }
 
-resource "google_compute_region_backend_service" "k3s-ingress-external" {
+resource "google_compute_region_backend_service" "k3s-vpnservers-tcp-external" {
   name                  = "k3s-ingress-external"
   region                = var.region
   load_balancing_scheme = "EXTERNAL"
+  protocol              = "TCP"
   health_checks         = [google_compute_region_health_check.k3s-health-check-ingress.id]
   backend {
     group = google_compute_region_instance_group_manager.k3s-agents.instance_group
   }
 }
 
-resource "google_compute_forwarding_rule" "k3s-ingress-external" {
+resource "google_compute_region_backend_service" "k3s-vpnservers-udp-external" {
+  name                  = "k3s-ingress-external"
+  region                = var.region
+  load_balancing_scheme = "EXTERNAL"
+  protocol              = "UDP"
+  health_checks         = [google_compute_region_health_check.k3s-health-check-ingress.id]
+  backend {
+    group = google_compute_region_instance_group_manager.k3s-agents.instance_group
+  }
+}
+
+resource "google_compute_forwarding_rule" "k3s-vpnservers-external" {
   name                  = "k3s-ingress-external"
   region                = var.region
   load_balancing_scheme = "EXTERNAL"
   ip_address            = google_compute_address.k3s-ingress-external.address
   backend_service       = google_compute_region_backend_service.k3s-ingress-external.id
-  ports                 = [80,443]
+  ports                 = [443]
 }

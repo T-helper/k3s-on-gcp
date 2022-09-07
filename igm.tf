@@ -44,10 +44,10 @@ resource "google_compute_instance_template" "k3s-agent" {
   }
 }
 
-resource "google_compute_region_instance_group_manager" "k3s-agents" {
-  name = "k3s-agents-${var.name}"
+resource "google_compute_region_instance_group_manager" "k3s-agents-vpnservers" {
+  name = "k3s-agents-vpnservers-${var.name}"
 
-  base_instance_name = "k3s-agent-${var.name}"
+  base_instance_name = "k3s-agent-vpnservers-${var.name}"
   region             = var.region
 
   version {
@@ -57,12 +57,13 @@ resource "google_compute_region_instance_group_manager" "k3s-agents" {
   target_size = var.target_size
 
   named_port {
-    name = "http"
-    port = 80
+    name = "wireguard"
+    port = 443
+    protocol = "UDP"
   }
 
   named_port {
-    name = "https"
+    name = "openvpn"
     port = 443
   }
 

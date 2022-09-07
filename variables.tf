@@ -23,7 +23,7 @@ variable "machine_type" {
 
 variable "target_size" {
   type    = number
-  default = 3
+  default = 1
 }
 
 variable "token" {
