@@ -32,11 +32,22 @@ resource "google_compute_region_backend_service" "k3s-vpnservers-udp-external" {
   }
 }
 
-resource "google_compute_forwarding_rule" "k3s-vpnservers-external" {
+resource "google_compute_forwarding_rule" "k3s-vpnservers-tcp-external" {
   name                  = "k3s-ingress-external"
   region                = var.region
   load_balancing_scheme = "EXTERNAL"
   ip_address            = google_compute_address.k3s-ingress-external.address
-  backend_service       = google_compute_region_backend_service.k3s-ingress-external.id
+  backend_service       = google_compute_region_backend_service.k3s-vpnservers-tcp-external.id
   ports                 = [443]
+  protocol              = "TCP"
+}
+
+resource "google_compute_forwarding_rule" "k3s-vpnservers-udp-external" {
+  name                  = "k3s-ingress-external"
+  region                = var.region
+  load_balancing_scheme = "EXTERNAL"
+  ip_address            = google_compute_address.k3s-ingress-external.address
+  backend_service       = google_compute_region_backend_service.k3s-vpnservers-tcp-external.id
+  ports                 = [443]
+  protocol              = "UDP"
 }
