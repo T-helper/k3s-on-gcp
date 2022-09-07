@@ -56,17 +56,6 @@ resource "google_compute_region_instance_group_manager" "k3s-agents-vpnservers" 
 
   target_size = var.target_size
 
-  named_port {
-    name = "wireguard"
-    port = 443
-    protocol = "UDP"
-  }
-
-  named_port {
-    name = "openvpn"
-    port = 443
-  }
-
   update_policy {
     type                         = "PROACTIVE"
     instance_redistribution_type = "PROACTIVE"
