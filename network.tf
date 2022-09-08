@@ -1,5 +1,5 @@
-resource "google_compute_subnetwork" "k3s-agents-vpnservers" {
-  name          = "k3s-agents-vpnservers-${var.name}"
+resource "google_compute_subnetwork" "k3s-vpnservers" {
+  name          = "k3s-vpnservers-${var.name}"
   network       = var.network
   region        = var.region
   ip_cidr_range = var.cidr_range
@@ -12,25 +12,25 @@ resource "google_compute_address" "k3s-vpn" {
   region = var.region
 }
 resource "google_compute_router" "router" {
-  name    = "k3s-agents-vpnservers-${var.name}"
+  name    = "k3s-vpnservers-${var.name}"
   region  = var.region
   network = var.network
 }
 
 resource "google_compute_router_nat" "nat" {
-  name                               = "k3s-agents-vpnservers-${var.name}"
+  name                               = "k3s-vpnservers-${var.name}"
   router                             = google_compute_router.router.name
   region                             = var.region
   nat_ip_allocate_option             = "AUTO_ONLY"
   source_subnetwork_ip_ranges_to_nat = "LIST_OF_SUBNETWORKS"
   subnetwork {
-    name                    = google_compute_subnetwork.k3s-agents-vpnservers.id
+    name                    = google_compute_subnetwork.k3s-vpnservers.id
     source_ip_ranges_to_nat = ["ALL_IP_RANGES"]
   }
 }
 
 resource "google_compute_firewall" "k3s-agnets-vpnservers-firewall-iap" {
-  name                              = "k3s-agents-vpnservers-iap-${var.name}"
+  name                              = "k3s-vpnservers-iap-${var.name}"
   network                           = var.network
   source_ranges                     = ["35.235.240.0/20"]
   allow {
@@ -42,7 +42,7 @@ resource "google_compute_firewall" "k3s-agnets-vpnservers-firewall-iap" {
 }
 
 resource "google_compute_firewall" "k3s-agnets-vpnservers-tcp" {
-  name                              = "k3s-agents-vpnservers-${var.name}-tcp"
+  name                              = "k3s-vpnservers-${var.name}-tcp"
   network                           = var.network
   source_ranges                     = ["0.0.0.0/0"]
   allow {
@@ -53,7 +53,7 @@ resource "google_compute_firewall" "k3s-agnets-vpnservers-tcp" {
   direction   = "INGRESS"
 }
 resource "google_compute_firewall" "k3s-agnets-vpnservers-udp" {
-  name                              = "k3s-agents-vpnservers-${var.name}-udp"
+  name                              = "k3s-vpnservers-${var.name}-udp"
   network                           = var.network
   source_ranges                     = ["0.0.0.0/0"]
   allow {

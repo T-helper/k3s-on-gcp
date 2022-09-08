@@ -1,4 +1,4 @@
-data "template_file" "k3s-agent-vpnservers-startup-script" {
+data "template_file" "k3s-vpnservers-startup-script" {
   template = file("${path.module}/templates/agent.sh")
   vars = {
     token          = var.token
@@ -6,13 +6,13 @@ data "template_file" "k3s-agent-vpnservers-startup-script" {
   }
 }
 
-resource "google_compute_instance_template" "k3s-agent-vpnservers" {
-  name_prefix  = "k3s-agent-${var.name}-"
+resource "google_compute_instance_template" "k3s-vpnservers" {
+  name_prefix  = "k3s-vpnservers-${var.name}"
   machine_type = var.machine_type
 
-  tags = ["k3s", "k3s-agent-vpnservers"]
+  tags = ["k3s", "k3s-vpnservers"]
 
-  metadata_startup_script = data.template_file.k3s-agent-vpnservers-startup-script.rendered
+  metadata_startup_script = data.template_file.k3s-vpnservers-startup-script.rendered
 
   metadata = {
   }
@@ -25,7 +25,7 @@ resource "google_compute_instance_template" "k3s-agent-vpnservers" {
 
   network_interface {
     network    = var.network
-    subnetwork = google_compute_subnetwork.k3s-agents-vpnservers.self_link
+    subnetwork = google_compute_subnetwork.k3s-vpnservers.self_link
   }
 
   shielded_instance_config {
@@ -44,10 +44,10 @@ resource "google_compute_instance_template" "k3s-agent-vpnservers" {
   }
 }
 
-resource "google_compute_region_instance_group_manager" "k3s-agents-vpnservers" {
-  name = "k3s-agents-vpnservers-${var.name}"
+resource "google_compute_region_instance_group_manager" "k3s-vpnservers" {
+  name = "k3s-vpnservers-${var.name}"
 
-  base_instance_name = "k3s-agent-vpnservers-${var.name}"
+  base_instance_name = "k3s-vpnservers-${var.name}"
   region             = var.region
 
   version {
