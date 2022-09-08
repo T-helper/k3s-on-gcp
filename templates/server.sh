@@ -11,4 +11,5 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="v1.24.4+k3s1" sh -s - \
     --disable "traefik,local-storage" \
     --datastore-endpoint "postgres://${db_user}:${db_password}@${db_host}:5432/${db_name}" \
     --kube-apiserver-arg "service-node-port-range=80-32767" \
-    --docker
+    --docker \
+    --flannel-backend wireguard
