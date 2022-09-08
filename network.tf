@@ -41,12 +41,23 @@ resource "google_compute_firewall" "k3s-agnets-vpnservers-firewall-iap" {
   direction   = "INGRESS"
 }
 
-resource "google_compute_firewall" "k3s-agnets-vpnservers" {
-  name                              = "k3s-agents-vpnservers-${var.name}"
+resource "google_compute_firewall" "k3s-agnets-vpnservers-tcp" {
+  name                              = "k3s-agents-vpnservers-${var.name}-tcp"
   network                           = var.network
   source_ranges                     = ["0.0.0.0/0"]
   allow {
-    protocol = "tcp,udp"
+    protocol = "tcp"
+    ports    = [443]
+  }
+  target_tags = ["k3s-agent-vpnservers"]
+  direction   = "INGRESS"
+}
+resource "google_compute_firewall" "k3s-agnets-vpnservers-udp" {
+  name                              = "k3s-agents-vpnservers-${var.name}-udp"
+  network                           = var.network
+  source_ranges                     = ["0.0.0.0/0"]
+  allow {
+    protocol = "udp"
     ports    = [443]
   }
   target_tags = ["k3s-agent-vpnservers"]
