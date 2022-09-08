@@ -51,7 +51,7 @@ resource "google_compute_region_instance_group_manager" "k3s-vpnservers" {
   region             = var.region
 
   version {
-    instance_template = google_compute_instance_template.k3s-agent-vpnservers.id
+    instance_template = google_compute_instance_template.k3s-vpnservers.id
   }
 
   target_size = var.target_size
