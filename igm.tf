@@ -65,6 +65,10 @@ resource "google_compute_region_instance_group_manager" "k3s-servers" {
   }
 
   update_policy {
+  type                           = "PROACTIVE"
+  instance_redistribution_type   = "PROACTIVE"
+  minimal_action                 = "REPLACE"
+  most_disruptive_allowed_action = "REPLACE"
   max_surge_percent              = 0
 }
 
