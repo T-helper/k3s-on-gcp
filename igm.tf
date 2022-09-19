@@ -64,13 +64,13 @@ resource "google_compute_region_instance_group_manager" "k3s-servers" {
     instance_template = google_compute_instance_template.k3s-server.id
   }
 
-  update_policy {
-  type                           = "PROACTIVE"
-  instance_redistribution_type   = "PROACTIVE"
-  minimal_action                 = "REPLACE"
-  most_disruptive_allowed_action = "REPLACE"
-  max_surge_percent              = 0
-}
+#   update_policy {
+#   type                           = "PROACTIVE"
+#   instance_redistribution_type   = "PROACTIVE"
+#   minimal_action                 = "REPLACE"
+#   most_disruptive_allowed_action = "REPLACE"
+#   max_surge_percent              = 0
+# }
 
   target_size = var.target_size
 
