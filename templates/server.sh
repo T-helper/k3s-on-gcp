@@ -9,7 +9,7 @@ curl -sfL https://get.k3s.io | sh -s - \
     --tls-san "${external_lb_ip_address}" \
     --node-taint "CriticalAddonsOnly=true:NoExecute" \
     --disable "traefik,local-storage,servicelb" \
-    --cluster-init \
+    --datastore-endpoint "mysql://${db_user}:${db_password}@tcp(${db_host}:3306)/${db_name}" \
     --kube-apiserver-arg "service-node-port-range=80-32767" \
     --docker \
     --flannel-backend wireguard
@@ -19,5 +19,5 @@ curl -sfL https://get.k3s.io | sh -s - \
 
 
 
-    # --datastore-endpoint "mysql://${db_user}:${db_password}@tcp(${db_host}:3306)/${db_name}" \
+    
     #INSTALL_K3S_VERSION="v1.24.4+k3s1" 
