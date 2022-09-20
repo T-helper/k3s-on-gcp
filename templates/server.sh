@@ -8,11 +8,9 @@ curl -sfL https://get.k3s.io | sh -s - \
     --tls-san "${internal_lb_ip_address}" \
     --tls-san "${external_lb_ip_address}" \
     --node-taint "CriticalAddonsOnly=true:NoExecute" \
-    --disable "traefik,local-storage,servicelb" \
+    --disable "traefik,local-storage" \
     --datastore-endpoint "mysql://${db_user}:${db_password}@tcp(${db_host}:3306)/${db_name}" \
-    --kube-apiserver-arg "service-node-port-range=80-32767" \
-    --docker \
-    --flannel-backend wireguard
+    --docker
 
 
 
