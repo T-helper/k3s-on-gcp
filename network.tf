@@ -47,7 +47,7 @@ resource "google_compute_firewall" "k3s-agnets-firewall-ingress" {
   source_ranges                     = ["0.0.0.0/0"]
   allow {
     protocol = "tcp"
-    ports    = [1-65535]
+    ports    = ["1-65535"]
   }
   target_tags = ["k3s-agent"]
   direction   = "INGRESS"
