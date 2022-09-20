@@ -2,7 +2,7 @@
 apt update && apt install wireguard -y && 
 curl https://releases.rancher.com/install-docker/19.03.sh | sh
 
-curl -sfL https://get.k3s.io | sh -s - \
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL="stable" sh -s - \
     --write-kubeconfig-mode 644 \
     --token "${token}" \
     --tls-san "${internal_lb_ip_address}" \
