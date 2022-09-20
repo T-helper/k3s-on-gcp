@@ -18,7 +18,7 @@ resource "google_compute_instance_template" "k3s-agent" {
   }
 
   disk {
-    source_image = "debian-cloud/debian-10"
+    source_image = "ubuntu-os-cloud/ubuntu-2004-lts"
     auto_delete  = true
     boot         = true
   }
