@@ -16,3 +16,10 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL="stable" sh -s - \
  #   --node-taint "CriticalAddonsOnly=true:NoExecute" \
 
     #INSTALL_K3S_VERSION="v1.24.4+k3s1" 
+
+
+
+    '--flannel-backend' \
+        'wireguard' \
+        '--kube-apiserver-arg' \
+        'service-node-port-range=80-32767' \
