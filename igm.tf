@@ -32,8 +32,7 @@ resource "google_compute_instance_template" "k3s-server" {
     auto_delete  = true
     boot         = true
     type         = "pd-ssd"
-    size         = 20
-    
+    target_size  = 20
   }
 
   network_interface {
