@@ -57,15 +57,15 @@ resource "google_compute_region_instance_group_manager" "k3s-agents" {
 
   target_size = var.target_size
 
-  named_port {
-    name = "http"
-    port = 80
-  }
+  # named_port {
+  #   name = "http"
+  #   port = 80
+  # }
 
-  named_port {
-    name = "https"
-    port = 443
-  }
+  # named_port {
+  #   name = "https"
+  #   port = 443
+  # }
 
   update_policy {
     type                         = "PROACTIVE"
