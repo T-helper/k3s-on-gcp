@@ -21,6 +21,7 @@ resource "google_compute_instance_template" "k3s-agent" {
     source_image = "ubuntu-os-cloud/ubuntu-2004-lts"
     auto_delete  = true
     boot         = true
+    type         = "pd-ssd"
   }
 
   network_interface {
