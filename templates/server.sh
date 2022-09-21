@@ -1,6 +1,6 @@
 #! /bin/bash
-# apt update && apt install wireguard socat -y && 
-# curl https://releases.rancher.com/install-docker/19.03.sh | sh
+apt update && apt install wireguard socat -y && 
+curl https://releases.rancher.com/install-docker/19.03.sh | sh
 
 curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL="stable" sh -s - \
     --write-kubeconfig-mode 644 \
