@@ -10,6 +10,8 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL="stable" sh -s - \
     --node-taint "CriticalAddonsOnly=true:NoExecute" \
     --disable "traefik,local-storage" \
     --datastore-endpoint "mysql://${db_user}:${db_password}@tcp(${db_host}:3306)/${db_name}" \
-    --kube-apiserver-arg "service-node-port-range=80-32767" \
     --docker \
     --flannel-backend wireguard
+
+
+    #    --kube-apiserver-arg "service-node-port-range=80-32767" \
